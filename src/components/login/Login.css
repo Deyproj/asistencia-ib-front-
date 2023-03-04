@@ -1,0 +1,21 @@
+.imgLogin{
+    width: 60%;
+    height: 60%;
+
+}
+
+@media (max-width: 768px) { 
+    .imgLogin {
+        width: 100%;
+        height: auto;
+    }
+}
+
+
+
+
+
+
+  
+
+

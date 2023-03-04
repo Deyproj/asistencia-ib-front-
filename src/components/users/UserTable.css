@@ -1,0 +1,17 @@
+.fondo{
+    background-color: #00023d;
+    color: white;
+    height: 60px;
+}
+
+@media (max-width: 600px) {
+    .table2 {
+        width: 100%;
+    }
+    .th2 {
+        display: none;
+    }
+    .td2{
+        display: block;
+    }
+}

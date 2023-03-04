@@ -1,0 +1,19 @@
+.navBar {
+    background-color: #0900ab;
+    font-family: sans-serif;
+    line-height: 30px;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+}
+
+.link:hover,
+.link:focus {
+    color: rgb(30,192,242)
+}
+
+a:hover {
+    text-decoration: none;
+  }
