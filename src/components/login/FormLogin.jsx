@@ -69,7 +69,7 @@ const FormLogin = () => {
                                     </form>
                                 </div>
                             </div>
-                            <div className="card text-white bg-primary py-5 d-md-down-none" >
+                            <div className="card text-white bg-primary py-5 d-none d-lg-block /* d-md-down-none */" >
                                 <div className="card-body text-center">
                                     <div>
                                         <h2>WebIB</h2>
