@@ -84,7 +84,7 @@ const TablePersonas = () => {
                         <h3>Personas Ausentes</h3>
                     </div>
                     <div className='col-4  col-lg-4 my-2 mx-4 mx-lg-3 me-4'>
-                       {tablaPersonas.length != 0 && <button className='btn btn-outline-primary' onClick={downloadExcelFile}>Descargar Excel</button>}
+                       <button className='btn btn-outline-primary' onClick={downloadExcelFile}>Descargar Excel</button>
                     </div>
                 </div>
                     <div className='col-10'>

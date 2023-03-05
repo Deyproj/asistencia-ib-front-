@@ -46,7 +46,7 @@ const FormLogin = () => {
                                             required: "Campo Obligatorio",
                                         })} />
                                         <div className='text-danger'>
-                                            {errors?.username?.message}
+                                            {errors?.email?.message}
                                         </div>
                                         <label className="form-label">Password</label>
                                         <input className="form-control" type="password" name="password" {...register("password", {
