@@ -21,7 +21,8 @@ function NavBar() {
 
   const logout = () => {
     localStorage.removeItem('token');
-    window.location.assign(`http://localhost:3000`);
+    //window.location.assign(`http://localhost:3000`);
+    window.location.assign(`https://master.d3d1jq5p91qrar.amplifyapp.com`);
   }
 
   const handleOnClick = () => {
