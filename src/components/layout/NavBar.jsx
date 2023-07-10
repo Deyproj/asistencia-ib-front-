@@ -16,13 +16,15 @@ import jwt_decode from 'jwt-decode';
 
 function NavBar() {
 
+
+  //crear modal react 
   const token = localStorage.getItem('token') && jwt_decode(localStorage.getItem('token'));
   const rol = token && token.rol[0].nombre;
 
   const logout = () => {
     localStorage.removeItem('token');
-    //window.location.assign(`http://localhost:3000` );
-    window.location.assign(`https://master.d3d1jq5p91qrar.amplifyapp.com`);
+    window.location.assign(`https://www.danielguzman.online`);
+    //window.location.assign(`https://master.d3d1jq5p91qrar.amplifyapp.com`);
   }
 
   const handleOnClick = () => {
@@ -37,7 +39,7 @@ function NavBar() {
       <Container>
         <Navbar.Brand>
           <Link to="/home" className="link m-2">
-            <img src='/images/oneflower.png' width="40" height="40" alt='flower' ></img>
+            <img src='/images/oneflower400.png' width="40" height="40" alt='flower' ></img>
             {" "}{"Flores Isabelita"}
           </Link>
         </Navbar.Brand>

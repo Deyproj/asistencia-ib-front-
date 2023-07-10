@@ -1,6 +1,5 @@
 import NavBar from "../components/layout/NavBar";
 import Asistencia from "../pages/asistencia";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Actual from "../pages/actual";
 import Users from "../pages/users";
@@ -20,7 +19,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route index element={
-             localStorage.getItem('token')? <Home /> : <Login />
+            localStorage.getItem('token')? <Home /> : <Login />
           } />
         {/*   <Route path="/login"  element={<Login />} /> */}
           <Route
@@ -47,7 +46,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-           <Route
+          <Route
             path="/data"
             element={
               <ProtectedRoute path={"/data"}>

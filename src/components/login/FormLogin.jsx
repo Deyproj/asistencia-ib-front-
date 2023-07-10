@@ -17,7 +17,7 @@ const FormLogin = () => {
             .then(res => res.json())
             .then(res => {
                 localStorage.setItem('token', res.token);
-                window.location.assign(`http://localhost:3000/home`);
+                window.location.assign(`https://www.danielguzman.online`);
             })
             .catch(error => {
                 console.error(error);
