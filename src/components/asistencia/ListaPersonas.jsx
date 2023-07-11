@@ -67,7 +67,7 @@ const ListaPersonas = ({ results, onObserv, onUpdate, search }) => {
                           /> */}
 
                         </div>
-                        <div className="btn-group col-5 ml-auto" role="group" aria-label="Basic radio toggle button group">
+                        <div className="btn-group col-5 ml-auto px-0" role="group" aria-label="Basic radio toggle button group">
                           <input
                             type="radio"
                             className="btn-check"
@@ -96,7 +96,7 @@ const ListaPersonas = ({ results, onObserv, onUpdate, search }) => {
           </div>
         ) : (
           <div className="text-center">
-            <img src="/images/Diversity _Isometric (1).svg" alt="" />
+            <img src="/images/Diversity _Isometric (1).svg" alt="" height="260px"/>
             <h4 className="restitle">¿Qué equipo lideras?</h4>
           </div>
         )

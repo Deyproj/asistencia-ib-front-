@@ -43,10 +43,10 @@ function NavBar() {
             {" "}{"Flores Isabelita"}
           </Link>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        {rol&&<Navbar.Toggle aria-controls="responsive-navbar-nav" />}
         <Navbar.Collapse id="responsive-navbar-nav" className="navBar">
           <Nav className="mx-auto"></Nav>
-          <Nav >
+          <Nav className="mx-auto">
             {rol && rol === "ADMIN" || rol === "DATA" || rol === "USER" ? (
               <>
                 <Link to="/asistencia" className="link m-2 navbar-collapse" onClick={() => handleOnClick()}>

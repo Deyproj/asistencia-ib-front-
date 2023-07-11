@@ -80,18 +80,18 @@ const TablePersonas = () => {
             <br />
             <div className='card shadow-lg'>
                 <div className='row'>
-                    <div className='col-12 col-lg-6 mx-4 my-2 me-4 offset-0'>
-                        <h3>Personas Ausentes</h3>
+                    <div className='col-12 col-lg-6  my-2 me-4 offset-0'>
+                        <h3 className='px-4'>Personas Ausentes</h3>
                     </div>
-                    <div className='col-4  col-lg-4 my-2 mx-4 mx-lg-3 me-4'>
-                       <button className='btn btn-outline-primary' onClick={downloadExcelFile}>Descargar Excel</button>
+                    <div className='col-4  col-lg-4 my-2  px-4 mx-lg-3 me-4'>
+                        <button className='btn btn-outline-primary' onClick={downloadExcelFile}>Descargar Excel</button>
                     </div>
                 </div>
-                    <div className='col-10'>
-                        <div className="input-group my-2 mx-2 ">
-                            <input type="text" className="form-control" value={buscador} onChange={buscarChange} placeholder='Buscar' />
-                        </div>
+                <div className='col-10'>
+                    <div className="input-group my-2  ">
+                        <input type="text" className="form-control" value={buscador} onChange={buscarChange} placeholder='Buscar' />
                     </div>
+                </div>
                 <table className="table  ">
                     <tbody>
                         {tablaPersonas.map((persona) => {

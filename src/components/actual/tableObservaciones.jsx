@@ -29,10 +29,10 @@ const TableObservaciones = () => {
         <div className='pt-4'>
             <div className='card shadow-lg'>
                 <div className='row'>
-                    <div className='mx-4 my-2'>
-                    <h3>Causas Ausencias</h3>
+                    <div className='my-2'>
+                    <h3 className='px-4'>Causas Ausencias</h3>
                     </div>
-                    <div className='ml-2  '>
+                    <div className=''>
                     <Table >
                         <thead>
                             <tr>

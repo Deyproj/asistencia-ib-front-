@@ -32,14 +32,14 @@ const Actual = () => {
                     </div>
                     
                 </div>
-                <div className='row  '>
+                <div className='row '>
                     <div className='col-12 col-lg-7 order-3 order-lg-1'>
                         <br />
                         <div>
                             <TableProcesos />
                         </div>
                     </div>
-                    <div className='col-12 col-lg-5 order-1 order-lg-2'>
+                    <div className='col-12  col-lg-5 order-1 order-lg-2'>
                         <TableObservaciones />
                         <TablePersonas />
                     </div>

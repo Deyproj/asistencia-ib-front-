@@ -102,7 +102,7 @@ const Users = () => {
             {/*  <Header titulo="Gestion de Usuarios" /> */}
             <div className="container principal">
                 <div className="row pt-5">
-                    <div className='col-12 col-lg-6 mx-auto'>
+                    <div className='col-12 col-lg-5 mx-auto'>
                         <div className="flex-large">
                             {
                                 editing ? (
@@ -119,7 +119,7 @@ const Users = () => {
                         </div>
                     </div>
 
-                    <div className='col-12 col-lg-6 mx-auto'>
+                    <div className='col-12 col-lg-7 mx-auto'>
                         <div className="flex-large text-center">
                             <h2>Usuarios Actuales</h2>
                             <UserTable users={users} deleteUser={deleteUser} editUser={editUser} />

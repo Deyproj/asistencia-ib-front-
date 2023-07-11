@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { API_URL } from '../config/constant';
-import  useActual  from './useActual';
+import useActual from './useActual';
 
 const useAsistencia = (update) => {
-    
+
     const { now, } = useActual();
     const [ausentes, setAusentes] = useState([]);
     const [presentes, setPresentes] = useState([]);
@@ -19,24 +19,24 @@ const useAsistencia = (update) => {
         )
             .then(res => res.json())
             .then(res => { setAsistencias(res) })
-            estado()
+        estado()
     }
 
 
-        const cargarAsistenciasProcesos = () => {
-            fetch(`${API_URL}/asistencia/procesos?fecha=${now}`, {
-                method: 'GET',
-                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
-            })
-                .then(res => res.json())
-                .then(res => { setAsistenciaProcesos(res) })
-        }
+    const cargarAsistenciasProcesos = () => {
+        fetch(`${API_URL}/asistencia/procesos?fecha=${now}`, {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+        })
+            .then(res => res.json())
+            .then(res => { setAsistenciaProcesos(res) })
+    }
 
     const estado = () => {
         const ausentesArray = [];
         const presentesArray = [];
-       
-          asistencias.map((asistencia) => {
+
+        asistencias.map((asistencia) => {
             switch (asistencia.estado) {
                 case "0":
                     ausentesArray.push(asistencia);
@@ -54,12 +54,12 @@ const useAsistencia = (update) => {
     useEffect(() => {
         now && cargarAsistencias()
     }, [now, update]);
-    
-    
+
+
     useEffect(() => {
         now && cargarAsistenciasProcesos()
         now && estado()
-    }, [asistencias ]);
+    }, [asistencias]);
 
     return { ausentes, presentes, asistencias, totalasistencias, asistenciaProcesos }
 };

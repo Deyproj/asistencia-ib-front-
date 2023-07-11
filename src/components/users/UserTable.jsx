@@ -26,24 +26,24 @@ const UserTable = (props) => {
 
     return (
         <div >
-            <table className='table table2'>
+            <table className='table table-responsive '>
                 <thead>
                     <tr>
-                        <th className='th2'>Nombre</th>
-                        <th className='th2'>Correo</th>
-                        <th className='th2'>Rol</th>
-                        <th className='text-center th2' >Acciones</th>
+                        <th >Nombre</th>
+                        <th >Correo</th>
+                        <th >Rol</th>
+                        <th className='text-center ' >Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         props.users ?
                             props.users.map((user) => (
-                                <tr key={user.idUsuario}>
-                                    <td className='td2'>{user.nombre}</td>
-                                    <td className='td2'>{user.email}</td>
-                                    <td className='td2'>{user.roles[0].nombre}</td>
-                                    <td className='text-center td2'>
+                                <tr  key={user.idUsuario}>
+                                    <td className='text-nowrap'>{user.nombre}</td>
+                                    <td >{user.email}</td>
+                                    <td >{user.roles[0].nombre}</td>
+                                    <td className='text-center text-nowrap'>
                                         <button className='btn btn-outline-info mx-1' onClick={() => { props.editUser(user) }}>
                                             <FontAwesomeIcon icon={faPenToSquare} />
                                         </button>
