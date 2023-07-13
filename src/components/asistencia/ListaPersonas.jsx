@@ -16,6 +16,7 @@ const ListaPersonas = ({ results, onObserv, onUpdate, search }) => {
     "Licencia Materna",
     "Licencia Luto",
     "Vacaciones",
+    "Suspension",
     "Retiro",
   ];
 
@@ -96,7 +97,7 @@ const ListaPersonas = ({ results, onObserv, onUpdate, search }) => {
           </div>
         ) : (
           <div className="text-center">
-            <img src="/images/Diversity _Isometric (1).svg" alt="" height="260px"/>
+            <img src="/images/Diversity _Isometric.svg" alt="" height="260px"/>
             <h4 className="restitle">¿Qué equipo lideras?</h4>
           </div>
         )

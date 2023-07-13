@@ -10,11 +10,11 @@ const Home = () => {
                     <img className='imgHome' src="/images/oneflower.png" alt="flower" />
                     </div> */}
                     <div className='col-12 col-lg-6  '>
-                        <div className="card text-white bg-primary py-4 " >
+                        <div className="card text-white bg-success py-4 " >
                             <div className="card-body text-center">
                                 <div>
                                     <h2>WebIB</h2>
-                                    <img className='imgLogin' src="/images/oneflower.png" alt="flower" />
+                                    <img className='imgLogin' src="/images/flowers2.png" alt="flower" />
                                     <p>Sistema para la toma y control de asistencia .</p>
                                 </div>
                             </div>

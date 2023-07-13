@@ -57,7 +57,7 @@ const FormLogin = () => {
                                             {errors?.password?.message}
                                         </div>
                                         <br />
-                                        <button className='btn btn-primary'>Login</button>
+                                        <button className='btn btn-primary'>Ingresar</button>
                                         <br /><br />
                                         {error && (
                                             <>
@@ -69,11 +69,11 @@ const FormLogin = () => {
                                     </form>
                                 </div>
                             </div>
-                            <div className="card text-white bg-primary py-5 d-none d-lg-block /* d-md-down-none */" >
+                            <div className="card text-white bg-success py-5 d-none d-lg-block /* d-md-down-none */" >
                                 <div className="card-body text-center">
                                     <div>
                                         <h2>WebIB</h2>
-                                        <img className='imgLogin' src="/images/oneflower.png" alt="flower" />
+                                        <img className='imgLogin' src="/images/flowers2.png" alt="flower" />
                                         <p>Sistema para el registro y control de asistencia.</p>
                                     </div>
                                 </div>

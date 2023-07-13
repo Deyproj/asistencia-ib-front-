@@ -126,7 +126,7 @@ const Asistencia = () => {
             <TarjetasPersonas
               totalPersonas={totalPersonas}
               titulo="Total Personas"
-              background="bg-primary"
+              background="bg-success"
               icon={faUsers}
               stickytop="sticky-top"
             />

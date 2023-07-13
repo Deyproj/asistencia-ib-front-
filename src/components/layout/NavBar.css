@@ -1,5 +1,5 @@
 .navBar {
-    background-color: #0900ab;
+    /* background-color: #0900ab; */
     font-family: sans-serif;
     line-height: 30px;
 }
@@ -11,12 +11,9 @@
 
 .link:hover,
 .link:focus {
-    color: rgb(30,192,242)
+    color: #B3B3B3;
 }
 
 a:hover {
     text-decoration: none;
-  }
-
-
-  
+}

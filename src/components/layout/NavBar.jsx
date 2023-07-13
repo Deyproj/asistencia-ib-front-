@@ -35,18 +35,18 @@ function NavBar() {
 
 
 
-    <Navbar collapseOnSelect expand="lg" className="navBar " variant="dark">
+    <Navbar collapseOnSelect expand="lg" className="navBar bg-success" variant="dark">
       <Container>
         <Navbar.Brand>
           <Link to="/home" className="link m-2">
-            <img src='/images/oneflower400.png' width="40" height="40" alt='flower' ></img>
-            {" "}{"Flores Isabelita"}
+            <img src='/isabelitaLogo.jpg' width="40" height="40" alt='flower' ></img>
+            {" "}{"WebIB"}
           </Link>
         </Navbar.Brand>
         {rol&&<Navbar.Toggle aria-controls="responsive-navbar-nav" />}
-        <Navbar.Collapse id="responsive-navbar-nav" className="navBar">
+        <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mx-auto"></Nav>
-          <Nav className="mx-auto">
+          <Nav>
             {rol && rol === "ADMIN" || rol === "DATA" || rol === "USER" ? (
               <>
                 <Link to="/asistencia" className="link m-2 navbar-collapse" onClick={() => handleOnClick()}>

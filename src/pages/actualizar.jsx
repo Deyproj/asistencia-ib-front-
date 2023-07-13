@@ -32,7 +32,7 @@ const Actualizar = () => {
                             <TarjetasPersonas
                                 totalPersonas={totalPersonas}
                                 titulo="Personas Activas"
-                                background="bg-primary"
+                                background="bg-success"
                                 icon={faUsers}
                             />
                           {/*   <TarjetasPersonas
