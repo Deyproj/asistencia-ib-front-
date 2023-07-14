@@ -77,7 +77,7 @@ const ListaPersonas = ({ results, onObserv, onUpdate, search }) => {
                             onClick={(event) => onUpdate(event, persona, 1)}
                             defaultChecked={isCurrentDate && isPresent}
                           />
-                          <label className="btn btn-outline-primary p-1" htmlFor={`${persona.idEmpresa}A`}>Presente</label>
+                          <label className="btn btn-outline-success p-1" htmlFor={`${persona.idEmpresa}A`}>Presente</label>
                           <input
                             type="radio"
                             className="btn-check"

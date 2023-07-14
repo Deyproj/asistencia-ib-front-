@@ -84,7 +84,7 @@ const TablePersonas = () => {
                         <h3 className='px-4'>Personas Ausentes</h3>
                     </div>
                     <div className='col-4  col-lg-4 my-2  px-4 mx-lg-3 me-4'>
-                        <button className='btn btn-outline-primary' onClick={downloadExcelFile}>Descargar Excel</button>
+                        <button className='btn btn-outline-success' onClick={downloadExcelFile}>Descargar Excel</button>
                     </div>
                 </div>
                 <div className='col-10'>
@@ -103,10 +103,10 @@ const TablePersonas = () => {
                                 isAbsent &&
                                 <tr key={persona.idEmpresa}>
                                     <td><b>{persona.nombre}</b> <br />
-                                        <b className='text-primary'>{observacion}</b>
+                                        <b className='text-success'>{observacion}</b>
                                     </td>
                                     <td className='text-center'><br />
-                                        <button onClick={() => abrirModal(persona, observacion)} className="btn btn-outline-primary"> <FontAwesomeIcon icon={faPersonCircleExclamation} /></button>
+                                        <button onClick={() => abrirModal(persona, observacion)} className="btn btn-outline-success"> <FontAwesomeIcon icon={faPersonCircleExclamation} /></button>
                                     </td>
                                 </tr>
                             )

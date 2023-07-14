@@ -65,7 +65,7 @@ const EditUserForm = (props) => {
                             {errors?.password?.message}
                         </div>
                         <br/>
-                        <button className='btn btn-primary'>Editar usuario</button>
+                        <button className='btn btn-success'>Editar usuario</button>
                     </form>
                 </div>
             </div >

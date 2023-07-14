@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './modalPersona.css';
-import {API_URL} from '../../config/constant';
+import { API_URL } from '../../config/constant';
 
 
 
@@ -51,16 +51,16 @@ const ModalProceso = ({ onHide, show, proceso }) => {
                                     <b>{proceso.labor[tipoLabor]}</b>
                                 </div>
                             ))}
-                            </div>
-                            <div className="col-6">
-                                <h4>Maestro</h4>
+                        </div>
+                        <div className="col-6">
+                            <h4>Maestro</h4>
                             {procesoActual && Object.keys(procesoActual).map((tipoLabor) => (
-                                            <div key={tipoLabor}>
-                                                {tipoLabor}: <br />
-                                                <b>{procesoActual[tipoLabor]}</b>
-                                            </div>
-                                        ))
-                                
+                                <div key={tipoLabor}>
+                                    {tipoLabor}: <br />
+                                    <b>{procesoActual[tipoLabor]}</b>
+                                </div>
+                            ))
+
                             }
 
 
@@ -80,10 +80,10 @@ const ModalProceso = ({ onHide, show, proceso }) => {
                         </div>
 
                     </div>
-                    
+
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={onHide}>Close</Button>
+                    <button className='btn btn-success' onClick={onHide}>Cerrar</button>
                 </Modal.Footer>
             </Modal >
         </>

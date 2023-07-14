@@ -55,7 +55,7 @@ const AddUserForm = (props) => {
                             {errors?.password?.message}
                         </div>
                         <br />
-                        <button className='btn btn-primary'>Agregar usuario</button>
+                        <button className='btn btn-success'>Agregar usuario</button>
                     </form>
                 </div>
             </div >

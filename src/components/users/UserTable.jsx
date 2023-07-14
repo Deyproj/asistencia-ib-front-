@@ -44,7 +44,7 @@ const UserTable = (props) => {
                                     <td >{user.email}</td>
                                     <td >{user.roles[0].nombre}</td>
                                     <td className='text-center text-nowrap'>
-                                        <button className='btn btn-outline-info mx-1' onClick={() => { props.editUser(user) }}>
+                                        <button className='btn btn-outline-success mx-1' onClick={() => { props.editUser(user) }}>
                                             <FontAwesomeIcon icon={faPenToSquare} />
                                         </button>
                                         <button className='btn btn-outline-danger' onClick={() => { handleDeleteUser(user) }}>

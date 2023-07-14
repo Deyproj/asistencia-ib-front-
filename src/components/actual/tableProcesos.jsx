@@ -85,7 +85,7 @@ const TableProcesos = () => {
                                 <td className='text-center text-success'><b>{proceso.presentes}</b></td>
                                 <td className='text-center text-danger'><b>{proceso.ausentes}</b></td>
                                 <td className='text-center'>
-                                    <button onClick={() => abrirModal(proceso)} className="btn btn-outline-primary"> <FontAwesomeIcon icon={faListCheck} /></button>
+                                    <button onClick={() => abrirModal(proceso)} className="btn btn-outline-success"> <FontAwesomeIcon icon={faListCheck} /></button>
                                 </td>
                             </tr>
                         ))}

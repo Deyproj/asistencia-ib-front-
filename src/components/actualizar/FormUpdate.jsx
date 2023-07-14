@@ -45,13 +45,13 @@ const FormUpdate = ({ ultimaFecha, setUpdate, update }) => {
                 </div>
                 <br />
                 <div className="py-2 text-right">
-                    <Button type="submit" className="btn btn-primary " value="Actualizar">Actualizar</Button>
+                    <button type="submit" className="btn btn-success " value="Actualizar">Actualizar</button>
                 </div>
             </Form>
             {enviado && (
                 <>
                 <br />
-                    <div className="alert alert-primary" role="alert">
+                    <div className="alert alert-success" role="alert">
                         <strong>Excelente!</strong> Datos cargados con exito .
                     </div>
                 </>

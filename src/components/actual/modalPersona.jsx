@@ -21,7 +21,7 @@ const ModalPersona = ({ onHide, show, persona, observacion }) => {
                         <b>Labor:</b><br />
                         {persona.labor}<br />
                         <b>Ausencia:</b><br />
-                        <b className='text-primary'>{observacion}</b>
+                        <b className='text-success'>{observacion}</b>
                     </div>
                     <div className="col-12 col-lg-6">
                         <b>Documneto de identidad</b><br />
@@ -29,7 +29,7 @@ const ModalPersona = ({ onHide, show, persona, observacion }) => {
                         <b>Celular:</b><br />
                         {persona.celular}
                         <a className='ml-2' href={`https://wa.me/${persona.celular}`} target="_blank">
-                            <img className='iconoIMG' src="https://cdn-icons-png.flaticon.com/512/1384/1384178.png" alt="" />
+                            <img className='iconoIMG' src="https://cdn-icons-png.flaticon.com/128/3621/3621438.png" alt="" />
                         </a>
                         <br />
                         <br />
@@ -39,7 +39,7 @@ const ModalPersona = ({ onHide, show, persona, observacion }) => {
                 </div>
             </Modal.Body>
             <Modal.Footer>
-                <Button onClick={onHide}>Close</Button>
+                <button className='btn btn-success' onClick={onHide}>Cerrar</button>
             </Modal.Footer>
         </Modal>
     );

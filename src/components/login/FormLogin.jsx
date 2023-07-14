@@ -57,7 +57,7 @@ const FormLogin = () => {
                                             {errors?.password?.message}
                                         </div>
                                         <br />
-                                        <button className='btn btn-primary'>Ingresar</button>
+                                        <button className='btn btn-success'>Ingresar</button>
                                         <br /><br />
                                         {error && (
                                             <>
