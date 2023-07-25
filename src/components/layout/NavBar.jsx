@@ -38,7 +38,7 @@ function NavBar() {
     <Navbar collapseOnSelect expand="lg" className="navBar bg-success" variant="dark">
       <Container>
         <Navbar.Brand>
-          <Link to="/home" className="link m-2">
+          <Link to="/home" className="link m-2" onClick={() => handleOnClick()}>
             <img src='/isabelitaLogo.jpg' width="40" height="40" alt='flower' ></img>
             {" "}{"WebIB"}
           </Link>

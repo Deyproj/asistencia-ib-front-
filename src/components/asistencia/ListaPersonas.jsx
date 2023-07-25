@@ -18,6 +18,7 @@ const ListaPersonas = ({ results, onObserv, onUpdate, search }) => {
     "Vacaciones",
     "Suspension",
     "Retiro",
+    "Turno B",
   ];
 
   return (

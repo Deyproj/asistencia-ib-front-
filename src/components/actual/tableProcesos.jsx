@@ -69,21 +69,23 @@ const TableProcesos = () => {
                     </div>
                 </div>
                 <div>
-                <Table bordered >
-                    <thead className=''>
+                <table className='table table-responsive table-bordered' >
+                    <thead>
                         <tr>
                             <th scope="col">Nombre</th>
                             <th className='text-center' scope="col">Presentes</th>
                             <th className='text-center' scope="col">Ausentes</th>
+                            <th className='text-center' scope="col">Sin Validar</th>
                             <th className='text-center' scope="col">Detalles</th>
                         </tr>
                     </thead>
                     <tbody>
                         {tablaProcesos.map((proceso, i) => (
                             <tr key={i}>
-                                <td>{proceso.nombre}</td>
+                                <td className='text-nowrap text-left'>{proceso.nombre}</td>
                                 <td className='text-center text-success'><b>{proceso.presentes}</b></td>
                                 <td className='text-center text-danger'><b>{proceso.ausentes}</b></td>
+                                <td className='text-center text-secondary'><b>{proceso.pendientes}</b></td>
                                 <td className='text-center'>
                                     <button onClick={() => abrirModal(proceso)} className="btn btn-outline-success"> <FontAwesomeIcon icon={faListCheck} /></button>
                                 </td>
@@ -91,7 +93,7 @@ const TableProcesos = () => {
                         ))}
                         <ModalProceso show={showModal} onHide={() => setShowModal(false)} proceso={procesoSeleccionado} />
                     </tbody>
-                </Table>
+                </table>
                 </div>
                 {/*
                 <div className='d-flex justify-content-center'>
