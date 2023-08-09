@@ -85,7 +85,7 @@ const TableProcesos = () => {
                                 <td className='text-nowrap text-left'>{proceso.nombre}</td>
                                 <td className='text-center text-success'><b>{proceso.presentes}</b></td>
                                 <td className='text-center text-danger'><b>{proceso.ausentes}</b></td>
-                                <td className='text-center text-secondary'><b>{proceso.pendientes}</b></td>
+                                <td className={(proceso.pendientes == 0) ? ("text-center text-secondary") : ("text-center text-danger")}><b>{proceso.pendientes}</b></td>
                                 <td className='text-center'>
                                     <button onClick={() => abrirModal(proceso)} className="btn btn-outline-success"> <FontAwesomeIcon icon={faListCheck} /></button>
                                 </td>

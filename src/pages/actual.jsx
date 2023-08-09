@@ -6,7 +6,6 @@ import useAsistencias from '../hooks/useAsistencia';
 import TableProcesos from '../components/actual/tableProcesos';
 import TablePersonas from '../components/actual/tablePersonas';
 import TableObservaciones from '../components/actual/tableObservaciones';
-import { API_URL } from '../config/constant';
 
 
 const Actual = () => {
@@ -19,9 +18,6 @@ const Actual = () => {
             <div className='container principal'>
                 <div className='row pt-4 '>
                     <div className='col-12 col-lg-3  my-1 my-lg-0'>
-                        <Card numero={totalPersonas} titulo="Total Personas" background="card bg-primary" icon={faPeopleGroup} />
-                    </div>
-                    <div className='col-12 col-lg-3  my-1 my-lg-0'>
                         <Card numero={totalPersonas && presentes.length} titulo="Personas Presentes" background="card bg-success" icon={faPersonCircleCheck} />
                     </div>
                     <div className='col-12 col-lg-3 my-1 my-lg-0'>
@@ -29,6 +25,9 @@ const Actual = () => {
                     </div>
                     <div className='col-12 col-lg-3   my-1 my-lg-0'>
                         <Card numero={totalPersonas && totalPersonas - totalasistencias} titulo="Personas Por Validar" background="card bg-secondary" icon={faPersonChalkboard} />
+                    </div>
+                    <div className='col-12 col-lg-3  my-1 my-lg-0'>
+                        <Card numero={totalPersonas} titulo="Total Personas" background="card bg-primary" icon={faPeopleGroup} />
                     </div>
                     
                 </div>
