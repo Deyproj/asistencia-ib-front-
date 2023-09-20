@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TarjetasPersonas from '../TarjetasPersonas';
 import { faCalendarDay } from '@fortawesome/free-solid-svg-icons';
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { API_URL } from '../../config/constant';
 
 const FormUpdate = ({ ultimaFecha, setUpdate, update }) => {

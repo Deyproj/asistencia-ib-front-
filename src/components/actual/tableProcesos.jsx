@@ -81,7 +81,7 @@ const TableProcesos = () => {
                     </thead>
                     <tbody>
                         {tablaProcesos.map((proceso, i) => (
-                            <tr key={i}>
+                            (proceso.presentes+proceso.ausentes+proceso.pendientes == 0) ? (null) :(                            <tr key={i}>
                                 <td className='text-nowrap text-left'>{proceso.nombre}</td>
                                 <td className='text-center text-success'><b>{proceso.presentes}</b></td>
                                 <td className='text-center text-danger'><b>{proceso.ausentes}</b></td>
@@ -89,7 +89,7 @@ const TableProcesos = () => {
                                 <td className='text-center'>
                                     <button onClick={() => abrirModal(proceso)} className="btn btn-outline-success"> <FontAwesomeIcon icon={faListCheck} /></button>
                                 </td>
-                            </tr>
+                            </tr>)
                         ))}
                         <ModalProceso show={showModal} onHide={() => setShowModal(false)} proceso={procesoSeleccionado} />
                     </tbody>

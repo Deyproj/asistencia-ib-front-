@@ -10,18 +10,20 @@ import Actualizar from "../pages/actualizar";
 import Home from "../pages/home";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Data from "../pages/data";
+import TokenChecker from "./TokenChecker";
 
 function App() {
 
   return (
     <>
       <Router>
+      <TokenChecker/> 
         <NavBar />
         <Routes>
           <Route index element={
             localStorage.getItem('token')? <Home /> : <Login />
           } />
-        {/*   <Route path="/login"  element={<Login />} /> */}
+          <Route path="/login" element={<Login />} />
           <Route
             path="/home"
             element={

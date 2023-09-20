@@ -124,7 +124,7 @@ const Asistencia = () => {
           </Col>
           <Col md={4}>
             <TarjetasPersonas
-              totalPersonas={totalPersonas}
+              totalPersonas={(results == 0) ? (totalPersonas):(results.length)}
               titulo="Total Personas"
               background="bg-success"
               icon={faUsers}

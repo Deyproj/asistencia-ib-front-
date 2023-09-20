@@ -32,9 +32,6 @@ function NavBar() {
   }
 
   return (
-
-
-
     <Navbar collapseOnSelect expand="lg" className="navBar bg-success" variant="dark">
       <Container>
         <Navbar.Brand>
@@ -61,7 +58,7 @@ function NavBar() {
               </Link>
             ) : null}
 
-            {rol && rol === "ADMIN" || rol === "DATA" ? (
+            {rol && rol === "ADMIN" || rol === "SUPERDATA" ? (
               <Link to="/data" className="link m-2" onClick={() => handleOnClick()}>
                 <FontAwesomeIcon icon={faMagnifyingGlassChart} /> Historico
               </Link>
