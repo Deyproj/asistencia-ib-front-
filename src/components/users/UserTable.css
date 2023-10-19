@@ -1,17 +1,61 @@
-.fondo{
-    background-color: #00023d;
-    color: white;
-    height: 60px;
+/* Estilos para la vista de tabla en pantallas más grandes (PC) */
+.table-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-@media (max-width: 600px) {
-    .table2 {
-        width: 100%;
-    }
-    .th2 {
+.table {
+    width: 70%;
+    /* Ajusta el ancho de la tabla según tus necesidades */
+    /* Otros estilos de la tabla aquí */
+}
+
+/* Ocultar la vista de lista en pantallas grandes */
+@media (min-width: 769px) {
+    .user-list {
         display: none;
     }
-    .td2{
-        display: block;
+}
+
+/* Estilos para la vista de lista en dispositivos móviles */
+@media (max-width: 768px) {
+    .table-container {
+        flex-direction: column;
+    }
+
+    .tableUser {
+        display: none;
+        /* Ocultar la tabla en pantallas pequeñas */
+    }
+
+    .user-list {
+        width: 100%;
+    }
+
+    .user-item {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #f9f9f9;
+    }
+
+    .user-info {
+        margin-bottom: 5px;
+    }
+
+    .user-actions {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn {
+        margin: 2px;
+    }
+
+    .no-users {
+        text-align: center;
+        font-weight: bold;
+        margin: 10px;
     }
 }

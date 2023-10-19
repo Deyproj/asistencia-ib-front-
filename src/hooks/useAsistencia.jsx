@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy } from 'react';
 import { API_URL } from '../config/constant';
 import useActual from './useActual';
 
@@ -15,6 +15,8 @@ const useAsistencia = (update) => {
     const [presentesIB2, setPresentesIB2] = useState([]);
     const [asistencias, setAsistencias] = useState([]);
     const [asistenciaProcesos, setAsistenciaProcesos] = useState([]);
+    const [loading2, setLoading2] = useState(true);
+    const [loading3, setLoading3] = useState(true);
     let totalasistencias = asistencias.length;
 
     const cargarAsistencias = () => {
@@ -24,7 +26,7 @@ const useAsistencia = (update) => {
         }
         )
             .then(res => res.json())
-            .then(res => { setAsistencias(res) })
+            .then(res => { setAsistencias(res); setLoading3(false)  })
         estado()
     }
 
@@ -35,7 +37,7 @@ const useAsistencia = (update) => {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
         })
             .then(res => res.json())
-            .then(res => { setAsistenciaProcesos(res) })
+            .then(res => { setAsistenciaProcesos(res); setLoading2(false) })
     }
 
     const estado = () => {
@@ -47,33 +49,35 @@ const useAsistencia = (update) => {
         const presentesTurno2Array = [];
         const ausentesIB2Array = [];
         const presentesIB2Array = [];
-    
+
         asistencias.map((asistencia) => {
             const turno = asistencia.persona.turno;
-            switch (asistencia.estado) {
-                case "0":
-                    ausentesArray.push(asistencia);
-                    if (turno === "1") {
-                        ausentesTurno1Array.push(asistencia);
-                    } else if (turno === "2") {
-                        ausentesTurno2Array.push(asistencia);
-                    } else if (turno.includes("IB2")) {
-                        ausentesIB2Array.push(asistencia);
-                    }
-                    break;
-                case "1":
-                    presentesArray.push(asistencia);
-                    if (turno === "1") {
-                        presentesTurno1Array.push(asistencia);
-                    } else if (turno === "2") {
-                        presentesTurno2Array.push(asistencia);
-                    } else if (turno.includes("IB2")) {
-                        presentesIB2Array.push(asistencia);
-                    }
-                    break;
+            if (turno !== null && turno !== undefined) {
+                switch (asistencia.estado) {
+                    case "0":
+                        ausentesArray.push(asistencia);
+                        if (turno === "1") {
+                            ausentesTurno1Array.push(asistencia);
+                        } else if (turno === "2") {
+                            ausentesTurno2Array.push(asistencia);
+                        } else if (turno.includes("IB2")) {
+                            ausentesIB2Array.push(asistencia);
+                        }
+                        break;
+                    case "1":
+                        presentesArray.push(asistencia);
+                        if (turno === "1") {
+                            presentesTurno1Array.push(asistencia);
+                        } else if (turno === "2") {
+                            presentesTurno2Array.push(asistencia);
+                        } else if (turno.includes("IB2")) {
+                            presentesIB2Array.push(asistencia);
+                        }
+                        break;
+                }
             }
         });
-    
+
         setAusentes(ausentesArray);
         setPresentes(presentesArray);
         setAusentesTurno1(ausentesTurno1Array);
@@ -94,7 +98,7 @@ const useAsistencia = (update) => {
         now && estado()
     }, [asistencias]);
 
-    return { ausentesTurno1, presentesTurno1, ausentesTurno2, presentesTurno2, ausentesIB2, presentesIB2, ausentes, presentes, asistencias, totalasistencias, asistenciaProcesos }
+    return { ausentesTurno1, presentesTurno1, ausentesTurno2, presentesTurno2, ausentesIB2, presentesIB2, ausentes, presentes, asistencias, totalasistencias, asistenciaProcesos, loading2, loading3 }
 };
 
 export default useAsistencia;

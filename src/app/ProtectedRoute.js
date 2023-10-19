@@ -12,6 +12,10 @@ const RolAutorizados = (rol, path) => {
         ],
 
         DATA: [
+            '/home', '/asistencia', '/actual', '/data'
+        ],
+
+        SUPERDATA: [
             '/home', '/asistencia', '/actual', '/actualizar', '/data'
         ],
 

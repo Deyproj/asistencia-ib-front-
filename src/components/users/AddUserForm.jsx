@@ -41,6 +41,7 @@ const AddUserForm = (props) => {
                             <option></option>
                             <option text="USER">USER</option>
                             <option text="DATA">DATA</option>
+                            <option text="SUPERDATA">SUPERDATA</option>
                             <option text="ADMIN">ADMIN</option>
                         </select>
                         <div className='text-danger'>

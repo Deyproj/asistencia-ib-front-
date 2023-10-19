@@ -10,15 +10,20 @@ const ListaPersonas = ({ results, onObserv, onUpdate, search }) => {
 
   const justificaciones = [
     "Ausencia No Justificada",
-    "Permiso No remunerado",
-    "Permiso Compensatorio",
+    "Formacion",
     "Incapacidad",
     "Licencia Materna",
     "Licencia Luto",
-    "Vacaciones",
+    "No Programado",
+    "Permiso No remunerado",
+    "Permiso Remunerado",
+    "Permiso Compensatorio",
     "Suspension",
     "Retiro",
-    "Turno B",
+    "Turno Desfasado",
+    "Turno Martes-Sabado",
+    "Vacaciones",
+    "Visita Medica",
   ];
 
   return (

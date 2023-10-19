@@ -4,6 +4,7 @@ import {API_URL} from '../config/constant';
 const usePersonas = (update) => {
   const [personas, setPersonas] = useState([]);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
 
   // Función para actualizar la búsqueda de procesos
   const onProceso = (event) => {
@@ -16,8 +17,11 @@ const usePersonas = (update) => {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
     })
       .then(res => res.json())
-      .then(res => { setPersonas(res) });
+      .then(res => { setPersonas(res);  setLoading(false) });
   }
+  
+  
+  let totalPersonas = personas.length;
 
   
   const dataArr = [];
@@ -28,7 +32,7 @@ const usePersonas = (update) => {
   let procesos = [...result];
   procesos.sort();
 
-  let totalPersonas = personas.length;
+  
   
   // Arreglo para almacenar los resultados de búsqueda
   let results = [];
@@ -40,7 +44,7 @@ const usePersonas = (update) => {
   }, [update]);
 
   
-  return { personas, totalPersonas, procesos, onProceso, results, search, setPersonas };
+  return { personas, totalPersonas, procesos, onProceso, results, search, setPersonas, loading };
 };
 
 export default usePersonas;

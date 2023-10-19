@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faListCheck } from '@fortawesome/free-solid-svg-icons';
-import { Table } from 'react-bootstrap';
 import useAsistencia from '../../hooks/useAsistencia';
 import ModalProceso from './modalProceso';
-import { API_URL } from '../../config/constant';
+import './tableProcesos.css'
+import Loading from '../layout/Loading';
+
 //import useActual from '../../hooks/useActual';
 //import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
@@ -14,7 +15,7 @@ const TableProcesos = () => {
     //const [asistenciaProcesos, setAsistenciaProcesos] = useState([]);
     const [buscador, setBuscador] = useState('')
     const [tablaProcesos, setTablaProcesos] = useState([])
-    const {asistenciaProcesos } = useAsistencia();
+    const { asistenciaProcesos, loading2 } = useAsistencia();
 
     const [showModal, setShowModal] = useState(false);
     const [procesoSeleccionado, setProcesoSeleccionado] = useState({});
@@ -47,7 +48,7 @@ const TableProcesos = () => {
         setProcesoSeleccionado(proceso);
         setShowModal(true);
     };
-    
+
     useEffect(() => {
         asistenciaProcesos.sort((a, b) => (a.nombre > b.nombre) ? 1 : -1);
         setTablaProcesos(asistenciaProcesos)
@@ -55,7 +56,8 @@ const TableProcesos = () => {
 
     return (
         <>
-            <div className='card shadow-lg'>
+         {( loading2 ) ? <Loading /> : 
+         (<div className='card shadow-lg'>
                 <div className='row'>
                     <div className='col-lg-6'>
                         <div className='mx-4 my-3 me-4'>
@@ -69,32 +71,76 @@ const TableProcesos = () => {
                     </div>
                 </div>
                 <div>
-                <table className='table table-responsive table-bordered' >
-                    <thead>
-                        <tr>
-                            <th scope="col">Nombre</th>
-                            <th className='text-center' scope="col">Presentes</th>
-                            <th className='text-center' scope="col">Ausentes</th>
-                            <th className='text-center' scope="col">Sin Validar</th>
-                            <th className='text-center' scope="col">Detalles</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+
+                    <table className='table table2 table-sm     table-responsive table-bordered' >
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th className='text-center' scope="col">Presentes</th>
+                                <th className='text-center' scope="col">Ausentes</th>
+                                <th className='text-center' scope="col">Sin Validar</th>
+                                <th className='text-center' scope="col">Detalles</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {tablaProcesos.map((proceso, i) => (
+                                (proceso.presentes + proceso.ausentes + proceso.pendientes == 0) ? (null) : (<tr key={i}>
+                                    <td className='text-nowrap text-left'>{proceso.nombre}</td>
+                                    <td className='text-center text-success'><b>{proceso.presentes}</b></td>
+                                    <td className='text-center text-danger'><b>{proceso.ausentes}</b></td>
+                                    <td className={(proceso.pendientes == 0) ? ("text-center text-secondary") : ("text-center text-danger")}><b>{proceso.pendientes}</b></td>
+                                    <td className='text-center'>
+                                        <button onClick={() => abrirModal(proceso)} className="btn btn-outline-success"> <FontAwesomeIcon icon={faListCheck} /></button>
+                                    </td>
+                                </tr>)
+                            ))}
+                            <ModalProceso show={showModal} onHide={() => setShowModal(false)} proceso={procesoSeleccionado} />
+                        </tbody>
+                    </table>
+
+                    <div className='proceso-list'>
                         {tablaProcesos.map((proceso, i) => (
-                            (proceso.presentes+proceso.ausentes+proceso.pendientes == 0) ? (null) :(                            <tr key={i}>
-                                <td className='text-nowrap text-left'>{proceso.nombre}</td>
-                                <td className='text-center text-success'><b>{proceso.presentes}</b></td>
-                                <td className='text-center text-danger'><b>{proceso.ausentes}</b></td>
-                                <td className={(proceso.pendientes == 0) ? ("text-center text-secondary") : ("text-center text-danger")}><b>{proceso.pendientes}</b></td>
-                                <td className='text-center'>
-                                    <button onClick={() => abrirModal(proceso)} className="btn btn-outline-success"> <FontAwesomeIcon icon={faListCheck} /></button>
-                                </td>
-                            </tr>)
+                            proceso.presentes + proceso.ausentes + proceso.pendientes === 0 ? (
+                                null
+                            ) : (
+                                <div key={i} className='proceso-item'>
+                                    <div className='proceso-info1'>
+                                        <strong>Nombre:</strong> {proceso.nombre}
+                                    </div>
+                                    <div className='proceso-info2 py-1'>
+                                    <div>
+                                        <strong>Presentes:</strong> {proceso.presentes}
+                                    </div>
+                                    <div>
+                                        <strong>Ausentes:</strong> {proceso.ausentes}
+                                    </div>
+                                    </div>
+                                    <div className={proceso.pendientes <= 0 ? 'proceso-info3 text-secondary' : 'proceso-info3 text-danger'}>
+                                        <strong>Sin Validar:</strong> {proceso.pendientes}
+                                    </div>
+                                    <div className='proceso-actions'>
+                                        <a href="#">
+                                            <button
+                                                className='btn btn-outline-success mx-1'
+                                                onClick={() => {
+                                                    abrirModal(proceso);
+                                                }}
+                                            >
+                                                <FontAwesomeIcon icon={faListCheck} />
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            )
                         ))}
-                        <ModalProceso show={showModal} onHide={() => setShowModal(false)} proceso={procesoSeleccionado} />
-                    </tbody>
-                </table>
+                    </div>
+
+                    </div>
                 </div>
+
+            )}
+
+            
                 {/*
                 <div className='d-flex justify-content-center'>
                                     <Pagination>
@@ -118,7 +164,6 @@ const TableProcesos = () => {
       </Pagination>
                 </div>
                  */}
-            </div>
         </>
     );
 }

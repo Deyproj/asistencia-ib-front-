@@ -5,15 +5,15 @@ import EditUserForm from '../components/users/EditUserForm';
 import UserTable from '../components/users/UserTable';
 import { useEffect } from 'react';
 import { API_URL } from '../config/constant';
+import Loading from '../components/layout/Loading';
 
 
 const Users = () => {
 
     const [users, setUsers] = useState();
     const [editing, setEditing] = useState(false);
-    const [currenUser, setCurrenUser] = useState({
-
-    })
+    const [currenUser, setCurrenUser] = useState({})
+    const [loading, setLoading] = useState(true);
 
 
     const cargarUsuarios = () => {
@@ -25,7 +25,7 @@ const Users = () => {
             },
         })
             .then(res => res.json())
-            .then(res => { setUsers(res) })
+            .then(res => { setUsers(res); setLoading(false) })
     }
 
     const addUser = async (user) => {
@@ -99,8 +99,8 @@ const Users = () => {
 
     return (
         <>
-            {/*  <Header titulo="Gestion de Usuarios" /> */}
-            <div className="container principal">
+            {loading ? <Loading /> : (
+                <div className="container principal">
                 <div className="row pt-5">
                     <div className='col-12 col-lg-5 mx-auto'>
                         <div className="flex-large">
@@ -126,8 +126,9 @@ const Users = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
+            )}
+            
         </>
     );
 }

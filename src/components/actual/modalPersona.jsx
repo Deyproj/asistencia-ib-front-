@@ -24,7 +24,7 @@ const ModalPersona = ({ onHide, show, persona, observacion }) => {
                         <b className='text-success'>{observacion}</b>
                     </div>
                     <div className="col-12 col-lg-6">
-                        <b>Documneto de identidad</b><br />
+                        <b>Documento de identidad</b><br />
                         {persona.cedula}<br />
                         <b>Celular:</b><br />
                         {persona.celular}

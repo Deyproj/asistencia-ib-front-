@@ -44,7 +44,7 @@ function NavBar() {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mx-auto"></Nav>
           <Nav>
-            {rol && rol === "ADMIN" || rol === "DATA" || rol === "USER" ? (
+            {rol && rol === "ADMIN" || rol === "DATA" || rol === "USER" || rol === "SUPERDATA" ? (
               <>
                 <Link to="/asistencia" className="link m-2 navbar-collapse" onClick={() => handleOnClick()}>
                   <FontAwesomeIcon icon={faPersonChalkboard} /> Asistencia
@@ -52,19 +52,19 @@ function NavBar() {
               </>
             ) : null}
 
-            {rol && rol === "ADMIN" || rol === "DATA" ? (
+            {rol && rol === "ADMIN" || rol === "DATA" || rol === "SUPERDATA" ? (
               <Link to="/actual" className="link m-2" onClick={() => handleOnClick()}>
                 <FontAwesomeIcon icon={faChartBar} /> Actual
               </Link>
             ) : null}
 
-            {rol && rol === "ADMIN" || rol === "SUPERDATA" ? (
+            {rol && rol === "ADMIN" ? (
               <Link to="/data" className="link m-2" onClick={() => handleOnClick()}>
                 <FontAwesomeIcon icon={faMagnifyingGlassChart} /> Historico
               </Link>
             ) : null}
 
-            {rol && rol === "ADMIN" || rol === "DATA" ? (
+            {rol && rol === "ADMIN" || rol === "SUPERDATA" ? (
               <Link to="/actualizar" className="link m-2" onClick={() => handleOnClick()}>
                 <FontAwesomeIcon icon={faRefresh} /> Actualizar
               </Link>

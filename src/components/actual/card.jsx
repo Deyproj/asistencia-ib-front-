@@ -8,7 +8,7 @@ const Card = ({ numero, titulo, background, icon }) => {
         <div className="media">
           <FontAwesomeIcon  className="ico m-3" icon={icon} />
           <div className="media-body">
-            <h5 className="mt-3 text-white">{numero}</h5>
+            <h4 className="mt-3 text-white">{numero}</h4>
             <p className="text-white">{titulo}</p>
           </div>
         </div>
