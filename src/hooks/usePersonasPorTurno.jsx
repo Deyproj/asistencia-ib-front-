@@ -2,9 +2,12 @@ import { useState, useEffect } from 'react';
 import {API_URL} from '../config/constant';
 
 const usePersonasPorTurno = () => {
-  const [cantidadPersonasTurno1, setCantidadPersonasTurno1] = useState([]);
-  const [cantidadPersonasTurno2, setCantidadPersonasTurno2] = useState([]);
-  const [cantidadPersonasIB2, setCantidadPersonasIB2] = useState([]);
+  const [cantidadPersonasIBNoche, setCantidadPersonasIBNoche] = useState([]);
+  const [cantidadPersonasIBDia, setCantidadPersonasIBDia] = useState([]);
+  const [cantidadPersonasIBTarde, setCantidadPersonasIBTarde] = useState([]);
+  const [cantidadPersonasIB2Noche, setCantidadPersonasIB2Noche] = useState([]);
+  const [cantidadPersonasIB2Dia, setCantidadPersonasIB2Dia] = useState([]);
+  const [cantidadPersonasIB2Tarde, setCantidadPersonasIB2Tarde] = useState([]);
   const [cantidadPersonas, setCantidadPersonas] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -15,9 +18,12 @@ const usePersonasPorTurno = () => {
     })
       .then(res => res.json())
       .then(res => {
-          setCantidadPersonasTurno1(res.turno1 || 0);
-          setCantidadPersonasTurno2(res.turno2 || 0);
-          setCantidadPersonasIB2(res.ib2 || 0);
+          setCantidadPersonasIBNoche(res.ibt1 || 0);
+          setCantidadPersonasIBDia(res.ibt2 || 0);
+          setCantidadPersonasIBTarde(res.ibt3 || 0);
+          setCantidadPersonasIB2Noche(res.ib2t1 || 0);
+          setCantidadPersonasIB2Dia(res.ib2t2 || 0);
+          setCantidadPersonasIB2Tarde(res.ib2t3 || 0);
         setLoading(false);
       })
       .catch(error => {
@@ -30,7 +36,15 @@ const usePersonasPorTurno = () => {
   }, []);
 
   
-  return { cantidadPersonasTurno1, cantidadPersonasTurno2, cantidadPersonasIB2, loading };
+  return { 
+    cantidadPersonasIBNoche, 
+    cantidadPersonasIBDia, 
+    cantidadPersonasIBTarde,
+    cantidadPersonasIB2Noche, 
+    cantidadPersonasIB2Dia,
+    cantidadPersonasIB2Tarde,
+    loading
+  };
 };
 
 export default usePersonasPorTurno;

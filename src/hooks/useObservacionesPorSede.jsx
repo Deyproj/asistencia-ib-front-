@@ -14,7 +14,6 @@ const useObservacionesPorTurno = () => {
           .then(res => {
               setObservaciones(res); setLoading(false);
           })
-
   }
 
   useEffect(() => {

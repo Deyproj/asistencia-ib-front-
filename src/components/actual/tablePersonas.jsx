@@ -18,14 +18,7 @@ const TablePersonas = () => {
     const [personaSeleccionada, setPersonaSeleccionada] = useState({});
     const [buscador, setBuscador] = useState('')
     const [tablaPersonas, setTablaPersonas] = useState([])
-
-    const buscarChange = e => {
-        //Cada que hay un cambio en el input del buscador, se ejecutara esta función
-        setBuscador(e.target.value);
-        //Llamamos la funcion filtrar y le pasamos el valor del input
-        filtrar(e.target.value);
-    }
-
+    
     const filtrar = (terminoBusqueda) => {
         //Recibimos el valor a buscar
         //Filtramos el valor a buscar en la tabla
@@ -45,6 +38,13 @@ const TablePersonas = () => {
         setTablaPersonas(resultado);
     }
 
+    const buscarChange = e => {
+        //Cada que hay un cambio en el input del buscador, se ejecutara esta función
+        setBuscador(e.target.value);
+        //Llamamos la funcion filtrar y le pasamos el valor del input
+        filtrar(e.target.value);
+    }
+
     const abrirModal = (persona, observacion) => {
         setPersonaSeleccionada(persona);
         setObservacion(observacion);
@@ -52,21 +52,21 @@ const TablePersonas = () => {
     };
 
     function downloadExcelFile() {
-        fetch(`${API_URL}/file/donwload`, {
+        fetch(`${API_URL}/file/donwloadAusencias`, {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
             method: 'GET',
-        }).then(response => {
-            return response.blob();
-        }).then(blob => {
-            const url = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', `Personas Ausentes ${now}`);
-            document.body.appendChild(link);
-            link.click();
-        });
+        })
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', `Personas Ausentes ${now}.xlsx`);
+                document.body.appendChild(link);
+                link.click();
+            })
+            .catch(error => console.error('Error downloading file:', error));
     }
-
 
     useEffect(() => {
         setTablaPersonas(personas);
@@ -82,10 +82,10 @@ const TablePersonas = () => {
         {( loading ) ? <Loading /> : 
         ( <div className='card shadow-lg'>
         <div className='row'>
-            <div className='col-12 col-lg-6  my-2 me-4 offset-0'>
+            <div className='col-12 col-lg-6  my-2 offset-0'>
                 <h3 className='px-4'>Personas Ausentes</h3>
             </div>
-            <div className='col-4  col-lg-4 my-2  px-4 mx-lg-3 me-4'>
+            <div className='col-4  col-lg-4 my-2 px-4 mx-lg-3 me-4'>
                 <button className='btn btn-outline-success' onClick={downloadExcelFile}>Descargar Excel</button>
             </div>
         </div>
@@ -97,7 +97,7 @@ const TablePersonas = () => {
         <table className="table  ">
             <tbody>
                 {tablaPersonas.map((persona) => {
-                    const lastAsistencia = persona.asistencias[persona.asistencias.length - 1];
+                    const lastAsistencia = persona.ultimaAsistencia;
                     const isCurrentDate = lastAsistencia && lastAsistencia.fecha === now;
                     const isAbsent = isCurrentDate && lastAsistencia.estado === "0";
                     const observacion = lastAsistencia && lastAsistencia.observacion;

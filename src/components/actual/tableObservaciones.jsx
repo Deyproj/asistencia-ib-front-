@@ -1,20 +1,17 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
-import { API_URL } from '../../config/constant';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import Loading from '../layout/Loading';
 import useObservacionesPorTurno from '../../hooks/useObservacionesPorSede';
 
-const TableObservaciones = ({sede, titulo}) => {
+const TableObservaciones = ({ sede, titulo }) => {
 
-   const { observaciones, loading } = useObservacionesPorTurno();
+    const { observaciones, loading } = useObservacionesPorTurno();
 
     return (
         <>
             {(loading) ? <Loading /> :
                 (
-                    <div className='pt-4'>
+                    <div className='pt-4' id={titulo}>
                         <div className='card shadow-lg'>
                             <div className='row'>
                                 <div className='my-2'>
@@ -29,20 +26,31 @@ const TableObservaciones = ({sede, titulo}) => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {observaciones && observaciones.map((observacion, i) => (
-                                                <tr key={i}>
-                                                    {observacion.observacion != "Observacion" && observacion.turno == sede  ?
-                                                        <>
-                                                            <td>{observacion.observacion}</td>
-                                                            <td className='text-center text-danger'><b>{observacion.cantidad}</b></td>
-                                                        </>
-                                                        : null}
-                                                </tr>
-                                            ))}
-                                            {observaciones.length == 0 && <tr><td className='text-center'>No hay ausencias</td></tr>}
+                                            {observaciones?.map((observacion, i) => (
+                                                    <React.Fragment key={i}>
+                                                        {observacion.turno === sede ? (
+                                                            <>
+                                                                <tr>
+                                                                    <td><b>{observacion.proceso}</b></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                {observacion.ausencias.map((ausencia, j) => (
+                                                                    <tr key={j}>
+                                                                        {ausencia.observacion !== "Observacion" ? (
+                                                                            <>
+                                                                                <td>{ausencia.observacion}</td>
+                                                                                <td className='text-center text-danger'><b>{ausencia.cantidad}</b></td>
+                                                                            </>
+                                                                        ) : null}
+                                                                    </tr>
+                                                                ))}
+                                                            </>
+                                                        ) : null}
+                                                    </React.Fragment>
+                                                ))}
+                                            {observaciones.length === 0 && <tr><td className='text-center'>No hay ausencias</td></tr>}
                                         </tbody>
                                     </Table>
-                                    
                                 </div>
                             </div>
                         </div>

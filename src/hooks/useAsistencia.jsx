@@ -1,35 +1,42 @@
-import { useState, useEffect, lazy } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { API_URL } from '../config/constant';
 import useActual from './useActual';
 
-const useAsistencia = (update) => {
-
-    const { now, } = useActual();
-    const [ausentes, setAusentes] = useState([]);
-    const [ausentesTurno1, setAusentesTurno1] = useState([]);
-    const [ausentesTurno2, setAusentesTurno2] = useState([]);
-    const [ausentesIB2, setAusentesIB2] = useState([]);
-    const [presentes, setPresentes] = useState([]);
-    const [presentesTurno1, setPresentesTurno1] = useState([]);
-    const [presentesTurno2, setPresentesTurno2] = useState([]);
-    const [presentesIB2, setPresentesIB2] = useState([]);
+const useAsistencia = () => {
+    const { now } = useActual();
+    const [ausentes, setAusentes] = useState(0);
+    const [presentes, setPresentes] = useState(0);
+    const [ausentesIBNoche, setAusentesIBNoche] = useState(0);
+    const [presentesIBNoche, setPresentesIBNoche] = useState(0);
+    const [ausentesIBDia, setAusentesIBDia] = useState(0);
+    const [presentesIBDia, setPresentesIBDia] = useState(0);
+    const [ausentesIBTarde, setAusentesIBTarde] = useState(0);
+    const [presentesIBTarde, setPresentesIBTarde] = useState(0);
+    const [presentesIB2Noche, setPresentesIB2Noche] = useState(0);
+    const [ausentesIB2Noche, setAusentesIB2Noche] = useState(0);
+    const [presentesIB2Dia, setPresentesIB2Dia] = useState(0);
+    const [ausentesIB2Dia, setAusentesIB2Dia] = useState(0);
+    const [presentesIB2Tarde, setPresentesIB2Tarde] = useState(0);
+    const [ausentesIB2Tarde, setAusentesIB2Tarde] = useState(0);
     const [asistencias, setAsistencias] = useState([]);
     const [asistenciaProcesos, setAsistenciaProcesos] = useState([]);
     const [loading2, setLoading2] = useState(true);
     const [loading3, setLoading3] = useState(true);
-    let totalasistencias = asistencias.length;
 
     const cargarAsistencias = () => {
         fetch(`${API_URL}/asistencia?fecha=${now}`, {
             method: 'GET',
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
-        }
-        )
+        })
             .then(res => res.json())
-            .then(res => { setAsistencias(res); setLoading3(false)  })
-        estado()
-    }
-
+            .then(res => {
+                setAsistencias(res);
+                setLoading3(false);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
 
     const cargarAsistenciasProcesos = () => {
         fetch(`${API_URL}/asistencia/procesos?fecha=${now}`, {
@@ -37,68 +44,101 @@ const useAsistencia = (update) => {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
         })
             .then(res => res.json())
-            .then(res => { setAsistenciaProcesos(res); setLoading2(false) })
-    }
+            .then(res => {
+                setAsistenciaProcesos(res);
+                setLoading2(false);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
 
-    const estado = () => {
-        const ausentesArray = [];
-        const presentesArray = [];
-        const ausentesTurno1Array = [];
-        const presentesTurno1Array = [];
-        const ausentesTurno2Array = [];
-        const presentesTurno2Array = [];
-        const ausentesIB2Array = [];
-        const presentesIB2Array = [];
-
-        asistencias.map((asistencia) => {
-            const turno = asistencia.persona.turno;
-            if (turno !== null && turno !== undefined) {
-                switch (asistencia.estado) {
-                    case "0":
-                        ausentesArray.push(asistencia);
-                        if (turno === "1") {
-                            ausentesTurno1Array.push(asistencia);
-                        } else if (turno === "2") {
-                            ausentesTurno2Array.push(asistencia);
-                        } else if (turno.includes("IB2")) {
-                            ausentesIB2Array.push(asistencia);
-                        }
-                        break;
-                    case "1":
-                        presentesArray.push(asistencia);
-                        if (turno === "1") {
-                            presentesTurno1Array.push(asistencia);
-                        } else if (turno === "2") {
-                            presentesTurno2Array.push(asistencia);
-                        } else if (turno.includes("IB2")) {
-                            presentesIB2Array.push(asistencia);
-                        }
-                        break;
-                }
+    const actualizarEstado = (data) => {
+        for (const key in data) {
+            switch (key) {
+                case 'ausentes':
+                    setAusentes(data[key]);
+                    break;
+                case 'presentes':
+                    setPresentes(data[key]);
+                    break;
+                case 'ausentesIBDia':
+                    setAusentesIBDia(data[key]);
+                    break;
+                case 'presentesIBDia':
+                    setPresentesIBDia(data[key]);
+                    break;
+                case 'ausentesIBNoche':
+                    setAusentesIBNoche(data[key]);
+                    break;
+                case 'presentesIBNoche':
+                    setPresentesIBNoche(data[key]);
+                    break;
+                case 'ausentesIBTarde':
+                    setAusentesIBTarde(data[key]);
+                    break;
+                case 'presentesIBTarde':
+                    setPresentesIBTarde(data[key]);
+                    break;
+                case 'ausentesIB2Noche':
+                    setAusentesIB2Noche(data[key]);
+                    break;
+                case 'presentesIB2Noche':
+                    setPresentesIB2Noche(data[key]);
+                    break;
+                case 'ausentesIB2Dia':
+                    setAusentesIB2Dia(data[key]);
+                    break;
+                case 'presentesIB2Dia':
+                    setPresentesIB2Dia(data[key]);
+                    break;
+                case 'ausentesIB2Tarde':
+                    setAusentesIB2Tarde(data[key]);
+                    break;
+                case 'presentesIB2Tarde':
+                    setPresentesIB2Tarde(data[key]);
+                    break;
+                default:
+                    break;
             }
-        });
-
-        setAusentes(ausentesArray);
-        setPresentes(presentesArray);
-        setAusentesTurno1(ausentesTurno1Array);
-        setPresentesTurno1(presentesTurno1Array);
-        setAusentesTurno2(ausentesTurno2Array);
-        setPresentesTurno2(presentesTurno2Array);
-        setAusentesIB2(ausentesIB2Array);
-        setPresentesIB2(presentesIB2Array);
+        }
+        
     };
 
     useEffect(() => {
-        now && cargarAsistencias()
-    }, [now, update]);
-
+        if (now) {
+            cargarAsistencias();
+        }
+    }, [now]);
 
     useEffect(() => {
-        now && cargarAsistenciasProcesos()
-        now && estado()
+        if (loading3 === false) {
+            cargarAsistenciasProcesos();
+            actualizarEstado(asistencias);
+        }
     }, [asistencias]);
 
-    return { ausentesTurno1, presentesTurno1, ausentesTurno2, presentesTurno2, ausentesIB2, presentesIB2, ausentes, presentes, asistencias, totalasistencias, asistenciaProcesos, loading2, loading3 }
+
+    return {
+        ausentesIBNoche,
+        presentesIBNoche,
+        ausentesIBDia,
+        presentesIBDia,
+        ausentesIBTarde,
+        presentesIBTarde,
+        ausentesIB2Noche,
+        presentesIB2Noche,
+        ausentesIB2Dia,
+        presentesIB2Dia,
+        ausentesIB2Tarde,
+        presentesIB2Tarde,
+        ausentes,
+        presentes,
+        asistencias,
+        asistenciaProcesos,
+        loading2,
+        loading3
+    };
 };
 
 export default useAsistencia;

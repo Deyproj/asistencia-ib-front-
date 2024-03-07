@@ -14,7 +14,7 @@ const Asistencia = () => {
   const { now, } = useActual();
 
   const [update, setUpdate] = useState(0);
-  const { personas, totalPersonas, procesos, onProceso, results, search, loading } = usePersonas(update);
+  const { personas, totalPersonas, procesos, turnos, onProceso, onTurno, results, search, search2, loading } = usePersonas(update);
   const [registro, setRegistro] = useState();
 
   const onObserv = (event, persona) => {
@@ -95,26 +95,44 @@ const Asistencia = () => {
           <Row className="pt-4">
             <Col md={8}>
               <form className="mb-3 mt-2">
-                <div className="form-group">
-                  <label>Proceso:</label>
+              <div className="form-group">
+                  <label>Turno:</label>
                   <select
                     id="palabraClave"
                     name="palabraClave"
                     className="form-control"
-                    value={search}
-                    onChange={onProceso}
+                    value={search2}
+                    onChange={onTurno}
                   >
                     <option value={false}>
-                      Selecciona tu equipo...
+                      Selecciona tu turno...
                     </option>
-                    {procesos.map((proceso) => (
-                      <option key={proceso}>{proceso}</option>
+                    {turnos.map((turno) => (
+                      <option key={turno}>{turno}</option>
                     ))}
                   </select>
                 </div>
+                {search2 !== "" && (
+                  <div className="form-group">
+                    <label>Proceso:</label>
+                    <select
+                      id="palabraClave"
+                      name="palabraClave"
+                      className="form-control"
+                      value={search}
+                      onChange={onProceso}
+                    >
+                      <option value={false}>
+                        Selecciona tu equipo...
+                      </option>
+                      {procesos.map((proceso) => (
+                        <option key={proceso}>{proceso}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
               </form>
               <ListaPersonas
-                personas={personas}
                 send={send}
                 onObserv={onObserv}
                 onUpdate={onUpdate}

@@ -8,6 +8,7 @@ const FormUpdate = ({ ultimaFecha, setUpdate, update }) => {
 
     const [file, setFile] = useState(null);
     const [enviado, setEnviado] = useState(false);
+    const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const handleFileChange = (event) => {
@@ -23,26 +24,31 @@ const FormUpdate = ({ ultimaFecha, setUpdate, update }) => {
         setLoading(true); // Activar el estado de carga
 
         try {
-            await fetch(`${API_URL}/personas/upload`, {
+            await fetch(`${API_URL}/file/upload`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
                 body: formData
             });
 
             setFile(null);
-            setEnviado(true);
             setUpdate(update + 1);
             e.target.reset();
 
             setTimeout(() => {
                 setEnviado(false);
             }, 3000);
+
         } catch (error) {
+            setError(true)
             console.error('Error al cargar los datos', error);
         } finally {
-            setLoading(false); // Desactivar el estado de carga después de la carga
+            setLoading(false);
         }
     }
+
+    setTimeout(() => {
+        setError(false);
+    }, 10000);
 
     return (
         <>
@@ -56,9 +62,9 @@ const FormUpdate = ({ ultimaFecha, setUpdate, update }) => {
                 <div className="py-2 text-right">
                     {loading ? (
                         <button className="btn btn-success" type="button" disabled>
-                        Cargando...
-                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span>
-                      </button>
+                            Cargando...
+                            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"> </span>
+                        </button>
                     ) : (
                         <button type="submit" className="btn btn-success" value="Actualizar">
                             Actualizar
@@ -66,6 +72,11 @@ const FormUpdate = ({ ultimaFecha, setUpdate, update }) => {
                     )}
                 </div>
             </Form>
+            {error && (
+                <div className="alert alert-danger" role="alert">
+                    <strong>¡Error en el envio de Datos!</strong> - Valida tu archivo.
+                </div>
+            )}
             {enviado && (
                 <>
                     <br />
@@ -80,6 +91,7 @@ const FormUpdate = ({ ultimaFecha, setUpdate, update }) => {
                 background="bg-white text-dark"
                 icon={faCalendarDay}
             />
+
         </>
     );
 }

@@ -60,11 +60,9 @@ const FormLogin = () => {
                                         <button className='btn btn-success'>Ingresar</button>
                                         <br /><br />
                                         {error && (
-                                            <>
                                                 <div className="alert alert-danger" role="alert">
                                                     <strong>¡Error de Autentificación!</strong> - Valida tus datos.
                                                 </div>
-                                            </>
                                         )}
                                     </form>
                                 </div>

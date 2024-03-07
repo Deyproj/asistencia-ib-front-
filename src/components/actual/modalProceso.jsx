@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './modalPersona.css';
 import { API_URL } from '../../config/constant';
-
-
 
 const ModalProceso = ({ onHide, show, proceso }) => {
 
@@ -24,17 +21,11 @@ const ModalProceso = ({ onHide, show, proceso }) => {
             .then(res => { setLaborActual(res) });
     }
 
-
     useEffect(() => {
         cargarNecesidad();
     }, []);
 
-
-
-
-
     return (
-        <>
             <Modal show={show} onHide={onHide} size="fluid" aria-labelledby="contained-modal-title-vcenter" centered backdrop={true}>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
@@ -59,34 +50,14 @@ const ModalProceso = ({ onHide, show, proceso }) => {
                                     {tipoLabor}: <br />
                                     <b>{procesoActual[tipoLabor]}</b>
                                 </div>
-                            ))
-
-                            }
-
-
-
-                            {/*                           {laborActual[proceso.nombre] && Object.keys(laborActual[proceso.nombre]).map((tipoLabor2, i) => (
-                                        <div key={i}>
-                                            {tipoLabor2}: <br />
-                                            <b>{proceso.labor[tipoLabor2]}</b>
-                                        </div>
-                                    ))} */}
-
-
-
-
-
-
+                            ))}
                         </div>
-
                     </div>
-
                 </Modal.Body>
                 <Modal.Footer>
                     <button className='btn btn-success' onClick={onHide}>Cerrar</button>
                 </Modal.Footer>
             </Modal >
-        </>
     );
 }
 

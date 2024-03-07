@@ -15,8 +15,7 @@ import TokenChecker from "./TokenChecker";
 function App() {
 
   return (
-    <>
-      <Router>
+    <Router>
       <TokenChecker/> 
         <NavBar />
         <Routes>
@@ -77,7 +76,6 @@ function App() {
           <Footer />
         </Row>
       </Router>
-    </>
   );
 }
 
