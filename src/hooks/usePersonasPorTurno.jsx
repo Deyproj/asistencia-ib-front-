@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import {API_URL} from '../config/constant';
+import useToken from './useToken';
 
 const usePersonasPorTurno = () => {
+  const { sedeId } = useToken();
   const [cantidadPersonasIBNoche, setCantidadPersonasIBNoche] = useState([]);
   const [cantidadPersonasIBDia, setCantidadPersonasIBDia] = useState([]);
   const [cantidadPersonasIBTarde, setCantidadPersonasIBTarde] = useState([]);
@@ -12,10 +14,15 @@ const usePersonasPorTurno = () => {
   const [loading, setLoading] = useState(true);
 
   const cargarCantidadPersonas = () => {
-    fetch(`${API_URL}/personas/turno`, {
+    if (!sedeId) {
+      console.error('Sede ID no disponible');
+      return;
+  }
+
+  fetch(`${API_URL}/personas/turno?sedeId=${sedeId}`, {
       method: 'GET',
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
-    })
+  })
       .then(res => res.json())
       .then(res => {
           setCantidadPersonasIBNoche(res.ibt1 || 0);
@@ -24,16 +31,19 @@ const usePersonasPorTurno = () => {
           setCantidadPersonasIB2Noche(res.ib2t1 || 0);
           setCantidadPersonasIB2Dia(res.ib2t2 || 0);
           setCantidadPersonasIB2Tarde(res.ib2t3 || 0);
-        setLoading(false);
+          setLoading(false);
       })
       .catch(error => {
-        console.error(error);
+          console.error(error);
       });
   };
 
-  useEffect(() => {
-    cargarCantidadPersonas();
-  }, []);
+  useEffect(
+    () => {
+      if (sedeId) {
+        cargarCantidadPersonas();
+      }
+  }, [sedeId]);
 
   
   return { 

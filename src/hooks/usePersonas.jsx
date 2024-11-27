@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { API_URL } from '../config/constant';
+import useToken from './useToken';
 
 const usePersonas = (update) => {
+    const { sedeId } = useToken();
     const [personas, setPersonas] = useState([]);
     const [personasSinAsistencia, setPersonasSinAsistencia] = useState([]);
     const [search, setSearch] = useState("");
@@ -9,7 +11,12 @@ const usePersonas = (update) => {
     const [loadingPeople, setLoadingPeople] = useState(true);
 
     const cargarDatos = () => {
-        fetch(`${API_URL}/personas`, {
+        if (!sedeId) {
+            console.error('Sede ID no disponible: ' + sedeId);
+            return;
+        }
+    
+        fetch(`${API_URL}/personas?sedeId=${sedeId}`, {
             method: 'GET',
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
         })
@@ -21,19 +28,19 @@ const usePersonas = (update) => {
             .catch(error => {
                 console.error(error);
             });
-
-        fetch(`${API_URL}/personas/sinAsistenciaHoy`, {
-            method: 'GET',
-            headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
-        })
-            .then(res => res.json())
-            .then(res => {
-                setPersonasSinAsistencia(res);
-                setLoadingPeople(false);
+        
+            fetch(`${API_URL}/personas/sinAsistenciaHoy?sedeId=${sedeId}`, {
+                method: 'GET',
+                headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
             })
-            .catch(error => {
-                console.error(error);
-            });
+                .then(res => res.json())
+                .then(res => {
+                    setPersonasSinAsistencia(res);
+                    setLoadingPeople(false);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
     };
 
     const onProceso = (event) => {
@@ -45,8 +52,10 @@ const usePersonas = (update) => {
     };
 
     useEffect(() => {
-        cargarDatos();
-    }, [update]);
+        if (sedeId) { 
+            cargarDatos();
+        }
+    }, [update, sedeId]); 
 
     const filtrarPersonas = () => {
         return personas.filter(persona => {

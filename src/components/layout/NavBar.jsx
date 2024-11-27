@@ -25,7 +25,7 @@ function NavBar() {
 
   const logout = () => {
     localStorage.removeItem('token');
-    window.location.assign(`https://www.danielguzman.online`);
+    window.location.assign(`https://www.isabelita.online`);
   }
 
   const handleOnClick = () => {

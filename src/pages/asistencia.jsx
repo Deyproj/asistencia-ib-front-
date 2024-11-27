@@ -6,12 +6,14 @@ import { faUsers } from '@fortawesome/free-solid-svg-icons';
 import usePersonas from "../hooks/usePersonas";
 import { API_URL } from '../config/constant';
 import useActual from '../hooks/useActual';
+import useToken from "../hooks/useToken";
 import Loading from "../components/layout/Loading";
 
 
 const Asistencia = () => {
 
   const { now, } = useActual();
+  const { sedeId } = useToken();
 
   const [update, setUpdate] = useState(0);
   const { personas, totalPersonas, procesos, turnos, onProceso, onTurno, results, search, search2, loading } = usePersonas(update);
@@ -62,22 +64,22 @@ const Asistencia = () => {
 
   // Función para enviar el registro de asistencia al servidor
   const send = (asistencia) => {
-    if (asistencia) {
-      fetch(`${API_URL}/asistencia`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify(asistencia),
-      })
+    if (asistencia || sedeId) {
+        fetch(`${API_URL}/asistencia?sedeId=${sedeId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify(asistencia),
+        })
         .then(() => {
-          setUpdate(update + 1);
+            setUpdate(update + 1);
         });
     } else {
-      console.log("La asistencia no se pudo enviar");
+        console.log("La asistencia o sedeId no se pudo enviar");
     }
-  };
+};
 
   useEffect(() => {
     if (registro) {

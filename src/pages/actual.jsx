@@ -35,14 +35,13 @@ const Actual = () => {
         asistencias,
         totalasistencias,
         asistenciaProcesos,
-        loading2,
-        loading3 } = useAsistencia()
+        loading2 } = useAsistencia()
 
 
     const [chartData, setChartData] = useState(null);
 
     useEffect(() => {
-        if (!loading && !loading2 && !loading3) {
+        if (!loading && !loading2 ) {
             const data1 = {
                 title: 'IB Dia',
                 series: [presentesIBDia, ausentesIBDia, cantidadPersonasIBDia - (ausentesIBDia + presentesIBDia)],
@@ -80,7 +79,7 @@ const Actual = () => {
             };
             setChartData([data1, data2, data3, data4, data5, data6, data7]);
         }
-    }, [loading, loading2, loading3]);
+    }, [loading, loading2]);
     
     const handleAusentesClick = (titulo) => {
         const element = document.getElementById(titulo);
@@ -91,7 +90,7 @@ const Actual = () => {
 
     return (
         <>
-            {(loading && loading2 && loading3) ? <Loading /> : (
+            {(loading && loading2) ? <Loading /> : (
                 <div className='container principal'>
                     <div className='row pt-4 d-flex justify-content-center align-content-center'>
                         {chartData?.map((data, index) => (

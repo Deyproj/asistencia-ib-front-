@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Card = ({ numero, titulo, background, icon }) => {
   return (
-    <>
-      <div className={background}>
+    <div className={background}>
         <div className="media">
           <FontAwesomeIcon  className="ico m-3" icon={icon} />
           <div className="media-body">
@@ -13,7 +12,6 @@ const Card = ({ numero, titulo, background, icon }) => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 

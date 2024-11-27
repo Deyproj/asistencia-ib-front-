@@ -7,30 +7,28 @@ const EditUserForm = (props) => {
         defaultValues: props.currenUser
     });
 
-
-    useEffect (() => {
-        setValue('nombre', props.currenUser.nombre)
-        setValue('email', props.currenUser.email)
-        setValue('roles', props.currenUser.roles)
-        setValue('password', props.currenUser.password)
-    }, )
-    
+    useEffect(() => {
+        setValue('nombre', props.currenUser.nombre);
+        setValue('email', props.currenUser.email);
+        setValue('roles', props.currenUser.roles);
+        setValue('sede', props.currenUser.sede);
+        setValue('password', props.currenUser.password);
+    }, [props.currenUser, setValue]);
 
     const onSubmit = (data, e) => {
-        data.idUsuario = props.currenUser.idUsuario
-        props.updateUser(props.currenUser.idUsuario, data)
+        data.idUsuario = props.currenUser.idUsuario;
+        props.updateUser(props.currenUser.idUsuario, data);
         e.target.reset();
     }
 
     return (
-        <>
             <div>
                 <div className="container">
                     <h1>Editar Usuario</h1>
                 </div>
                 <div className="container">
                     <form onSubmit={handleSubmit(onSubmit)}>
-                    <label className="form-label">Nombre</label>
+                        <label className="form-label">Nombre</label>
                         <input className="form-control" type="text" name="nombre" {...register("nombre", {
                             required: "Campo Obligatorio",
                         })} />
@@ -45,10 +43,9 @@ const EditUserForm = (props) => {
                             {errors?.email?.message}
                         </div>
                         <label className="form-label">Rol</label>
-                        <select className="form-control" type="text" name="roles" placeholder='Selecciona el rol del Usuario'{...register("roles", {
+                        <select className="form-control" type="text" name="roles" placeholder='Selecciona el rol del Usuario' {...register("roles", {
                             required: "Campo Obligatorio",
-                        })}
-                        >
+                        })}>
                             <option text="USER">USER</option>
                             <option text="DATA">DATA</option>
                             <option text="SUPERDATA">SUPERDATA</option>
@@ -57,11 +54,21 @@ const EditUserForm = (props) => {
                         <div className='text-danger'>
                             {errors?.roles?.message}
                         </div>
+                        <label className="form-label">Sede</label>
+                        <select className="form-control" type="text" name="sede" placeholder='Selecciona la sede' {...register("sede", {
+                            required: "Campo Obligatorio",
+                        })}>
+                            <option></option>
+                            <option text="IB">IB</option>
+                            <option text="IB2">IB2</option>
+                        </select>
+                        <div className='text-danger'>
+                            {errors?.sede?.message}
+                        </div>
                         <label className="form-label">Password</label>
                         <input className="form-control" type="text" name="password" {...register("password", {
                             required: "Campo Obligatorio",
-                        })}
-                        />
+                        })} />
                         <div className='text-danger'>
                             {errors?.password?.message}
                         </div>
@@ -70,7 +77,6 @@ const EditUserForm = (props) => {
                     </form>
                 </div>
             </div >
-        </>
     );
 }
 

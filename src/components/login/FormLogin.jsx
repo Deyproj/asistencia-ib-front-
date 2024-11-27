@@ -17,7 +17,7 @@ const FormLogin = () => {
             .then(res => res.json())
             .then(res => {
                 localStorage.setItem('token', res.token);
-                window.location.assign(`https://www.danielguzman.online`);
+                window.location.assign(`https://www.isabelita.online`);
             })
             .catch(error => {
                 console.error(error);

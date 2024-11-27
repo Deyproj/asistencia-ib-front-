@@ -22,7 +22,8 @@ const ModalSinAsistencia = ({ onHide, show }) => {
         var resultado = personasSinAsistencia.filter((persona) => {
 
             if (persona.proceso.toString().toLowerCase().includes(terminoBusqueda.toLowerCase()) ||
-                persona.nombre.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
+                persona.nombre.toString().toLowerCase().includes(terminoBusqueda.toLowerCase()) ||
+                persona.turno.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
 
             ) {
                 return persona;
@@ -71,14 +72,16 @@ const ModalSinAsistencia = ({ onHide, show }) => {
                         <table className="table  ">
                             <thead>
                                 <tr>
-                                    <th scope="col">Nombre</th>
-                                    <th className='text-center' scope="col">Proceso</th>
+                                    <th >Turno</th>
+                                    <th className='text-center'>Nombre</th>
+                                    <th className='text-center'>Proceso</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {tablaPersonas.map((persona) => {
                                     return (
                                         <tr key={persona.idEmpresa}>
+                                            <td>{persona.turno}</td>
                                             <td>{persona.nombre}</td>
                                             <td className='text-center'>{persona.proceso}</td>
                                         </tr>

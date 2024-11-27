@@ -3,8 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const TarjetasPersonas = ({ totalPersonas, titulo, background, icon, stickytop }) => {
   return (
-    <>
-      <div className={stickytop}>
+    <div className={stickytop}>
         <div className="card border-white mx-5 my-5 mx-lg-0 my-lg-3 text-center text-white ">
           <div className={background}>
             <div className="card-body ">
@@ -16,7 +15,6 @@ const TarjetasPersonas = ({ totalPersonas, titulo, background, icon, stickytop }
           </div>
         </div>
       </div>
-    </>
   );
 };
 

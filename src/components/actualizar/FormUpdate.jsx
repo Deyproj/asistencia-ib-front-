@@ -22,14 +22,14 @@ const FormUpdate = ({ ultimaFecha, setUpdate, update }) => {
         formData.append('file', file);
 
         setLoading(true); // Activar el estado de carga
-
         try {
-            await fetch(`${API_URL}/file/upload`, {
+            console.log(`${API_URL}/file/upload`);
+            const response = await fetch(`${API_URL}/file/upload`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
                 body: formData
             });
-
+            console.log(response);
             setFile(null);
             setUpdate(update + 1);
             e.target.reset();
