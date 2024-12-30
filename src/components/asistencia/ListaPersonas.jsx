@@ -13,6 +13,7 @@ const ListaPersonas = ({ results, onObserv, onUpdate, search }) => {
 
   const justificaciones = [
     "Ausencia No Justificada",
+    "Dia de la Familia",
     "Formacion",
     "Incapacidad",
     "Licencia Materna",
